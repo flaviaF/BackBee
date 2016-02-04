@@ -325,7 +325,11 @@ class UserController extends AbstractRestController
         }
 
         if ($actionFound) {
-            return new Response("", 204);
+	     if($actionFound === true) {
+		return new Response("", 204);
+	     } else {
+		return $actionFound;
+	     }
         } else {
             return $this->create404Response('Action not found');
         }
@@ -402,7 +406,12 @@ class UserController extends AbstractRestController
         }
 
         $user = $this->getEntityManager()->find(get_class($this->getUser()), $id);
+	 if($user->getFirstname() === $operations['firstname'] && $user->getLastname() === $operations['lastname'] && $user->getEmail() === $operations['email']){
+	      return new JsonResponse([
+			'errors' => [$this->getContainer()->get('translator')->trans('user.identity.sameinput')],
 
+		    ], 400);
+	}
         $user->setFirstname($operations['firstname']);
         $user->setLastname($operations['lastname']);
         $user->setEmail($operations['email']);
