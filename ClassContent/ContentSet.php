@@ -131,7 +131,7 @@ class ContentSet extends AbstractClassContent implements \Iterator, \Countable
             if (
                 $this->getProperty('clonemode') === 'none'
                 || ($this->key() < count($zones) && $zones[$this->key()]->defaultClassContent === 'inherited')
-                || (null !== $subcontent->getMainNode() && $subcontent->getMainNode()->getUid() !== $mainNodeUid)
+                || (null !== $subcontent->getMainNode() && $subcontent->getMainNode()->getUid() === $mainNodeUid)
             ) {
                 $clone->push($subcontent);
             } else {
