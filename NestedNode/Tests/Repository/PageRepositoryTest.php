@@ -877,7 +877,7 @@ class PageRepositoryTest extends BackBeeTestCase
             $this->assertEquals($descendants[$i]->getRightnode(), $new_descendants[$i]->getRightnode());
             $this->assertEquals($descendants[$i]->getPosition(), $new_descendants[$i]->getPosition());
             $this->assertEquals($descendants[$i]->getLevel(), $new_descendants[$i]->getLevel());
-            $this->assertEquals($new_descendants[$i], $new_descendants[$i]->getContentSet()->first()->getMainNode());
+            $this->assertEquals($descendants[$i], $new_descendants[$i]->getContentSet()->first()->getMainNode());
 
             if ('page1' === $new_descendants[$i]->getTitle()) {
                 $new_page1 = $new_descendants[$i];
